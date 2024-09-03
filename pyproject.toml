@@ -31,7 +31,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["hatchling", "ruff", "tox"]
+dev = ["bump-my-version", "hatchling", "ruff", "tox"]
 test = ["pytest", "pytest-cov", "pytest-randomly"]
 
 [project.urls]
@@ -44,6 +44,16 @@ path = "src/php_version_compare/__init__.py"
 
 [tool.hatch.build.targets.sdist]
 exclude = ["tox.ini", "tests"]
+
+[tool.bumpversion]
+current_version = "0.2.0"
+commit = true
+tag = true
+tag_name = "v{new_version}"
+message = "Bump version: {current_version} → {new_version}"
+
+[[tool.bumpversion.files]]
+filename = "src/php_version_compare/__init__.py"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
