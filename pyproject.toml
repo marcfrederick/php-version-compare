@@ -1,0 +1,47 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "php-version-compare"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["hatchling", "ruff", "tox"]
+test = ["pytest", "pytest-cov", "pytest-randomly"]
+
+[tool.hatch.build.targets.sdist]
+exclude = ["tox.ini", "tests"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-v --doctest-modules --cov=php_version_compare src tests"
+testpaths = ["tests"]
+
+[tool.pyright]
+include = ["src/**/*.py", "tests/**/*.py"]
+strict = ["*"]
+extraPaths = ["src"]
+pythonVersion = "3.6"

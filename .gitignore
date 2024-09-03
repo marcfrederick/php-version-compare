@@ -1,0 +1,10 @@
+*.egg-info/
+*.egg/
+*.pyc
+*.pyd
+*.pyo
+.coverage
+.tox/
+.venv/
+build/
+dist/
