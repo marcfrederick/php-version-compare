@@ -26,7 +26,9 @@ classifiers = [
     "Topic :: Software Development :: Libraries",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-dependencies = []
+dependencies = [
+    "typing-extensions; python_version < '3.8'",
+]
 
 [project.optional-dependencies]
 dev = ["hatchling", "ruff", "tox"]
