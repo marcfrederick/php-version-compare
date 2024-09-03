@@ -1,6 +1,6 @@
 import sys
 from itertools import zip_longest
-from typing import List, Union, Optional
+from typing import List, Union, Optional, overload
 
 if sys.version_info >= (3, 8):
     from typing import Literal
@@ -77,6 +77,14 @@ def _version_compare(version1: str, version2: str) -> int:
             return 1 if result > 0 else -1
 
     return 0
+
+
+@overload
+def version_compare(version1: str, version2: str) -> int: ...
+
+
+@overload
+def version_compare(version1: str, version2: str, operator: Operator) -> bool: ...
 
 
 def version_compare(
