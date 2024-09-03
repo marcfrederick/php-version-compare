@@ -1,5 +1,10 @@
 # php-version-compare
 
+[![Test Python package with Tox](https://github.com/marcfrederick/php-version-compare/actions/workflows/test.yml/badge.svg)](https://github.com/marcfrederick/php-version-compare/actions/workflows/test.yml)
+[![PyPI version](https://badge.fury.io/py/php-version-compare.svg)](https://badge.fury.io/py/php-version-compare)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/php-version-compare)](https://pypi.org/project/php-version-compare/)
+[![PyPI - License](https://img.shields.io/pypi/l/php-version-compare)](https://pypi.org/project/php-version-compare/)
+
 A simple Python library for comparing version strings in a manner compatible with PHP's
 [version_compare](https://www.php.net/manual/en/function.version-compare.php) function.
 Although this implementation is not derived from PHP's code, it passes the same tests to ensure compatibility.

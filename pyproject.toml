@@ -32,6 +32,11 @@ dependencies = []
 dev = ["hatchling", "ruff", "tox"]
 test = ["pytest", "pytest-cov", "pytest-randomly"]
 
+[project.urls]
+Repository = "https://github.com/marcfrederick/php-version-compare"
+Issues = "https://github.com/marcfrederick/php-version-compare/issues"
+Changelog = "https://github.com/marcfrederick/php-version-compare/releases"
+
 [tool.hatch.build.targets.sdist]
 exclude = ["tox.ini", "tests"]
 
