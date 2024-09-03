@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "php-version-compare"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.6"
@@ -38,6 +38,9 @@ test = ["pytest", "pytest-cov", "pytest-randomly"]
 Repository = "https://github.com/marcfrederick/php-version-compare"
 Issues = "https://github.com/marcfrederick/php-version-compare/issues"
 Changelog = "https://github.com/marcfrederick/php-version-compare/releases"
+
+[tool.hatch.version]
+path = "src/php_version_compare/__init__.py"
 
 [tool.hatch.build.targets.sdist]
 exclude = ["tox.ini", "tests"]

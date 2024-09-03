@@ -3,3 +3,5 @@ from php_version_compare.versioning import (
     version_compare as version_compare,
     Operator as Operator,
 )
+
+__version__ = "0.2.0"
