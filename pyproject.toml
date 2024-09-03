@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "php-version-compare"
 dynamic = ["version"]
-description = "Add your description here"
+description = "PHP-compatible version comparison for Python"
 readme = "README.md"
 requires-python = ">=3.6"
 classifiers = [

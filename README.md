@@ -1,6 +1,6 @@
 # php-version-compare
 
-[![Test Python package with Tox](https://github.com/marcfrederick/php-version-compare/actions/workflows/test.yml/badge.svg)](https://github.com/marcfrederick/php-version-compare/actions/workflows/test.yml)
+[![Test](https://github.com/marcfrederick/php-version-compare/actions/workflows/test.yml/badge.svg)](https://github.com/marcfrederick/php-version-compare/actions/workflows/test.yml)
 [![PyPI version](https://badge.fury.io/py/php-version-compare.svg)](https://badge.fury.io/py/php-version-compare)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/php-version-compare)](https://pypi.org/project/php-version-compare/)
 [![PyPI - License](https://img.shields.io/pypi/l/php-version-compare)](https://pypi.org/project/php-version-compare/)
@@ -22,9 +22,15 @@ pip install php-version-compare
 ```python
 from php_version_compare import version_compare
 
+# Without operator
 print(version_compare('1.0', '1.1'))  # Output: -1
 print(version_compare('1.1', '1.0'))  # Output: 1
 print(version_compare('1.0', '1.0'))  # Output: 0
+
+# With operator
+print(version_compare('1.1', '1.0.0', operator='>='))  # Output: True
+print(version_compare('1.0.0', '1.1', operator='<='))  # Output: True
+print(version_compare('1.0', '1.0', operator='!='))  # Output: False
 ```
 
 ## Contributing
