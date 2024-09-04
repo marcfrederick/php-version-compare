@@ -1,0 +1,3 @@
+This project contains test cases that are derived from the PHP source code. The PHP source code is licensed under the PHP License, and the use of these test cases is subject to the terms and conditions of that license.
+
+For more information about the PHP License, please refer to the included copy of the PHP License in the file tests/php_license/LICENSE_PHP_3_01.txt or visit the PHP website at http://www.php.net/license/3_01.txt.
