@@ -1,6 +1,6 @@
 import sys
 from itertools import zip_longest
-from typing import List, Union, Optional, overload
+from typing import Iterable, Optional, Union, overload
 
 if sys.version_info >= (3, 8):
     from typing import Literal
@@ -24,6 +24,43 @@ _SUFFIX_WEIGHT = {
 }
 
 
+def _split_version(version: str) -> Iterable[str]:
+    """
+     Split a version string into its components. This function is used to split a
+     version string into its major, minor, patch, and suffix components.
+
+    Examples:
+         >>> list(_split_version("1.0"))
+         ['1', '0']
+         >>> list(_split_version("1.0-DEV"))
+         ['1', '0', 'DEV']
+         >>> list(_split_version("1.0.1alpha"))
+         ['1', '0', '1', 'alpha']
+
+     Args:
+         version: The version string to split.
+
+     Yields:
+         The components of the version string.
+    """
+    current_segment = []
+
+    for curr_char in version:
+        if curr_char in "-+_.":
+            yield "".join(current_segment)
+            current_segment = []
+        elif current_segment and (
+            (current_segment[-1].isdigit() and curr_char.isalpha())
+            or (current_segment[-1].isalpha() and curr_char.isdigit())
+        ):
+            yield "".join(current_segment)
+            current_segment = [curr_char]
+        else:
+            current_segment.append(curr_char)
+
+    yield "".join(current_segment)
+
+
 def canonicalize_version(version: str) -> str:
     """
     Canonicalize a version string into a "PHP-style" version string. This
@@ -36,30 +73,17 @@ def canonicalize_version(version: str) -> str:
         '1.0.DEV'
         >>> canonicalize_version("1.0.1alpha")
         '1.0.1.alpha'
+
+    Args:
+        version: The version string to canonicalize.
+
+    Returns:
+        The canonicalized version string.
     """
-
-    canonicalized: List[str] = []
-    previous_char = None
-
-    for curr_char in version:
-        if curr_char in "-+_":
-            curr_char = "."
-        elif previous_char and (
-            (previous_char.isdigit() and curr_char.isalpha())
-            or (previous_char.isalpha() and curr_char.isdigit())
-        ):
-            canonicalized.append(".")
-
-        canonicalized.append(curr_char)
-        previous_char = curr_char
-
-    return "".join(canonicalized)
+    return ".".join(_split_version(version))
 
 
 def _version_compare(version1: str, version2: str) -> int:
-    def _split_version(version: str) -> List[str]:
-        return canonicalize_version(version).lower().split(".")
-
     def _compare_part(part1: str, part2: str) -> int:
         if part1.isdigit() and part2.isdigit():
             return int(part1) - int(part2)
@@ -69,8 +93,8 @@ def _version_compare(version1: str, version2: str) -> int:
             return -1
         return _SUFFIX_WEIGHT.get(part1, -1) - _SUFFIX_WEIGHT.get(part2, -1)
 
-    version1_parts = _split_version(version1)
-    version2_parts = _split_version(version2)
+    version1_parts = [part.lower() for part in _split_version(version1)]
+    version2_parts = [part.lower() for part in _split_version(version2)]
     for part1, part2 in zip_longest(version1_parts, version2_parts, fillvalue="#"):
         result = _compare_part(part1, part2)
         if result != 0:
