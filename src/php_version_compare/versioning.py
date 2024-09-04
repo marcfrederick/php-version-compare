@@ -43,12 +43,12 @@ def _split_version(version: str) -> Iterable[str]:
      Yields:
          The components of the version string.
     """
-    current_segment = ''
+    current_segment = ""
 
     for curr_char in version:
         if curr_char in "-+_.":
             yield current_segment
-            current_segment = ''
+            current_segment = ""
         elif current_segment and (
             (current_segment[-1].isdigit() and curr_char.isalpha())
             or (current_segment[-1].isalpha() and curr_char.isdigit())
