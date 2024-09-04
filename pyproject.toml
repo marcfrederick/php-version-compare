@@ -46,7 +46,7 @@ path = "src/php_version_compare/__init__.py"
 exclude = ["tox.ini", "tests"]
 
 [tool.bumpversion]
-current_version = "0.2.2"
+current_version = "1.0.0"
 commit = true
 tag = true
 tag_name = "v{new_version}"
