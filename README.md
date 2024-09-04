@@ -5,6 +5,9 @@
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/php-version-compare)](https://pypi.org/project/php-version-compare/)
 [![PyPI - License](https://img.shields.io/pypi/l/php-version-compare)](https://pypi.org/project/php-version-compare/)
 
+> ℹ️ **Note**: This project is feature-complete and will only receive updates for bug fixes or compatibility with new
+> Python versions. No new features are planned. If you require additional features, please consider forking the project.
+
 A simple Python library for comparing version strings in a manner compatible with PHP's
 [version_compare](https://www.php.net/manual/en/function.version-compare.php) function.
 Although this implementation is not derived from PHP's code, it passes the same tests to ensure compatibility.
@@ -44,10 +47,17 @@ print(version_compare('1.0', '1.0', operator='!='))  # Output: False
 
 ### Running Tests
 
-To run tests, make sure you have `tox` installed and run:
+To run tests, make sure you have `tox` installed and run the following command, which will run the tests for all
+supported Python versions that are installed on your system:
 
 ```bash
 tox
+```
+
+If you only want to run the tests for a specific Python version, you can specify the version:
+
+```bash
+tox -e py39
 ```
 
 ## License
