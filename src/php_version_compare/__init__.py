@@ -4,4 +4,4 @@ from php_version_compare.versioning import (
     Operator as Operator,
 )
 
-__version__ = "0.2.1"
+__version__ = "0.2.2"
