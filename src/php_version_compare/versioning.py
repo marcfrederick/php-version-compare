@@ -43,22 +43,22 @@ def _split_version(version: str) -> Iterable[str]:
      Yields:
          The components of the version string.
     """
-    current_segment = []
+    current_segment = ''
 
     for curr_char in version:
         if curr_char in "-+_.":
-            yield "".join(current_segment)
-            current_segment = []
+            yield current_segment
+            current_segment = ''
         elif current_segment and (
             (current_segment[-1].isdigit() and curr_char.isalpha())
             or (current_segment[-1].isalpha() and curr_char.isdigit())
         ):
-            yield "".join(current_segment)
-            current_segment = [curr_char]
+            yield current_segment
+            current_segment = curr_char
         else:
-            current_segment.append(curr_char)
+            current_segment += curr_char
 
-    yield "".join(current_segment)
+    yield current_segment
 
 
 def canonicalize_version(version: str) -> str:
