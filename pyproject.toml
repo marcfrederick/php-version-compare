@@ -9,7 +9,7 @@ description = "PHP-compatible version comparison for Python"
 readme = "README.md"
 requires-python = ">=3.6"
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: Apache Software License",
     "License :: OSI Approved :: MIT License",
@@ -26,6 +26,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
+keywords = ["php", "version", "compare", "comparison", "compatibility"]
 dependencies = [
     "typing-extensions; python_version < '3.8'",
 ]
