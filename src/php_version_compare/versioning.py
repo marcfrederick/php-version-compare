@@ -1,4 +1,5 @@
 import sys
+from collections import defaultdict
 from itertools import zip_longest
 from typing import Iterable, Optional, Union, overload
 
@@ -11,17 +12,20 @@ Operator = Literal[
     "<", "lt", "<=", "le", ">", "gt", ">=", "ge", "==", "=", "eq", "!=", "<>", "ne"
 ]
 
-_SUFFIX_WEIGHT = {
-    "dev": 0,
-    "alpha": 1,
-    "a": 1,
-    "beta": 2,
-    "b": 2,
-    "rc": 3,
-    "#": 4,
-    "pl": 5,
-    "p": 5,
-}
+_SUFFIX_WEIGHT = defaultdict(
+    lambda: -1,
+    {
+        "dev": 0,
+        "alpha": 1,
+        "a": 1,
+        "beta": 2,
+        "b": 2,
+        "rc": 3,
+        "#": 4,
+        "pl": 5,
+        "p": 5,
+    },
+)
 
 
 def _split_version(version: str) -> Iterable[str]:
@@ -91,10 +95,11 @@ def _version_compare(version1: str, version2: str) -> int:
             return 1
         if part2.isdigit():
             return -1
-        return _SUFFIX_WEIGHT.get(part1, -1) - _SUFFIX_WEIGHT.get(part2, -1)
+        return _SUFFIX_WEIGHT[part1] - _SUFFIX_WEIGHT[part2]
 
-    version1_parts = [part.lower() for part in _split_version(version1)]
-    version2_parts = [part.lower() for part in _split_version(version2)]
+    version1_parts = map(str.lower, _split_version(version1))
+    version2_parts = map(str.lower, _split_version(version2))
+
     for part1, part2 in zip_longest(version1_parts, version2_parts, fillvalue="#"):
         result = _compare_part(part1, part2)
         if result != 0:
