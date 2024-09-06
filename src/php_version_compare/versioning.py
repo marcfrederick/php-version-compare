@@ -8,6 +8,8 @@ if sys.version_info >= (3, 8):
 else:
     from typing_extensions import Literal
 
+Compare = Literal[-1, 0, 1]
+
 Operator = Literal[
     "<", "lt", "<=", "le", ">", "gt", ">=", "ge", "==", "=", "eq", "!=", "<>", "ne"
 ]
@@ -87,7 +89,7 @@ def canonicalize_version(version: str) -> str:
     return ".".join(_split_version(version))
 
 
-def _version_compare(version1: str, version2: str) -> int:
+def _version_compare(version1: str, version2: str) -> Compare:
     def _compare_part(part1: str, part2: str) -> int:
         if part1.isdigit() and part2.isdigit():
             return int(part1) - int(part2)
@@ -109,7 +111,7 @@ def _version_compare(version1: str, version2: str) -> int:
 
 
 @overload
-def version_compare(version1: str, version2: str) -> int: ...
+def version_compare(version1: str, version2: str) -> Compare: ...
 
 
 @overload
@@ -118,7 +120,7 @@ def version_compare(version1: str, version2: str, operator: Operator) -> bool: .
 
 def version_compare(
     version1: str, version2: str, operator: Optional[Operator] = None
-) -> Union[int, bool]:
+) -> Union[Compare, bool]:
     """
     Compare two version strings according to PHP's version_compare function.
 
