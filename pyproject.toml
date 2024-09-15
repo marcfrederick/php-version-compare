@@ -40,6 +40,7 @@ test = ["pytest", "pytest-cov", "pytest-randomly"]
 docs = ["sphinx", "sphinx-rtd-theme"]
 
 [project.urls]
+Documentation = "https://php-version-compare.readthedocs.io"
 Repository = "https://github.com/marcfrederick/php-version-compare"
 Issues = "https://github.com/marcfrederick/php-version-compare/issues"
 Changelog = "https://github.com/marcfrederick/php-version-compare/releases"
