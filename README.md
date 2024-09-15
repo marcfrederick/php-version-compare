@@ -22,6 +22,13 @@ pip install php-version-compare
 
 ## Usage
 
+### Documentation
+
+The complete documentation can be found on
+[Read the Docs](https://php-version-compare.readthedocs.io/).
+
+### Basic Usage
+
 ```python
 from php_version_compare import version_compare
 

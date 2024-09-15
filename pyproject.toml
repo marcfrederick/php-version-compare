@@ -34,6 +34,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = ["bump-my-version", "hatchling", "ruff", "tox"]
 test = ["pytest", "pytest-cov", "pytest-randomly"]
+docs = ["sphinx", "sphinx-rtd-theme"]
 
 [project.urls]
 Repository = "https://github.com/marcfrederick/php-version-compare"
@@ -55,6 +56,9 @@ message = "Bump version: {current_version} → {new_version}"
 
 [[tool.bumpversion.files]]
 filename = "src/php_version_compare/__init__.py"
+
+[[tool.bumpversion.files]]
+filename = "docs/source/conf.py"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
