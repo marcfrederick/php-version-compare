@@ -6,6 +6,9 @@ build-backend = "hatchling.build"
 name = "php-version-compare"
 dynamic = ["version"]
 description = "PHP-compatible version comparison for Python"
+authors = [
+    { name = "Marc Trölitzsch", email = "marc.troelitzsch@gmail.com" },
+]
 readme = "README.md"
 requires-python = ">=3.6"
 classifiers = [
